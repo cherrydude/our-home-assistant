@@ -1,0 +1,16 @@
+{
+  "name": "de",
+  "language": "de",
+  "speech_to_text": "vosk",
+  "text_to_speech": "none",
+  "intent_handling": "mqtt",
+  "mqtt": {
+    "host": "mosquitto",
+    "port": 1883,
+    "username": "",
+    "password": ""
+  },
+  "vosk": {
+    "model": "/profiles/de/model"
+  }
+}

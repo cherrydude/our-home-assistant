@@ -4,11 +4,11 @@ After=network.target
 
 [Service]
 Type=simple
-User=cherrydude
-WorkingDirectory=/home/cherrydude/Desktop/our-home-assistant-main
+User=herrfly
+WorkingDirectory=/home/herrfly/Desktop/our-home-assistant-main
 # Falls du flask per --user installiert hast, setze PATH so, dass ~/.local/bin gefunden wird:
-Environment=PATH=/home/cherrydude/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/usr/bin/python3 /home/cherrydude/Desktop/our-home-assistant-main/tts_server.py
+Environment=PATH=/home/herrfly/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/usr/bin/python3 /home/herrfly/Desktop/our-home-assistant-main/tts_server.py
 Restart=on-failure
 
 [Install]

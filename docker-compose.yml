@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    platform: linux/arm/v7
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=${TZ}
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto:2
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+
+  rhasspy:
+    container_name: rhasspy
+    image: rhasspy/rhasspy:latest
+    restart: unless-stopped
+    ports:
+      - "12101:12101"
+    devices:
+      - /dev/snd:/dev/snd
+    volumes:
+      - ./rhasspy/profiles:/profiles
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - TZ=${TZ}
+      - RHASSPY_PROFILE=de
+    depends_on:
+      - mosquitto

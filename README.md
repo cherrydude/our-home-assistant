@@ -1,6 +1,6 @@
 # our-home-assistant
 repo = basis des home assistant (sprachunterstützung + offline) für den lokalen raspberry pi
-
+ 
 ```markdown
 # Home Assistant Starter für Raspberry Pi 3 (offline, Portainer/Docker)
 

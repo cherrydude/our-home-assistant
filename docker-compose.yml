@@ -1,5 +1,4 @@
 version: "3.8"
-
 services:
   homeassistant:
     container_name: homeassistant
@@ -11,7 +10,7 @@ services:
       - ./config:/config
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - TZ=${TZ}
+      - TZ=${TZ:-Europe/Berlin}
 
   mosquitto:
     container_name: mosquitto
@@ -21,7 +20,7 @@ services:
       - "1883:1883"
       - "9001:9001"
     volumes:
-      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mosquitto/config:/mosquitto/config:ro
       - ./mosquitto/data:/mosquitto/data
       - ./mosquitto/log:/mosquitto/log
 
@@ -37,7 +36,7 @@ services:
       - ./rhasspy/profiles:/profiles
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - TZ=${TZ}
+      - TZ=${TZ:-Europe/Berlin}
       - RHASSPY_PROFILE=de
     depends_on:
       - mosquitto

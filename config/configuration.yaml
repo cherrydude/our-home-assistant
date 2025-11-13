@@ -1,0 +1,23 @@
+# Minimalbeispiel für Home Assistant (offline TTS via pico2wave)
+default_config:
+
+# MQTT: lokale Verbindung zum Mosquitto-Broker
+mqtt:
+  broker: mosquitto
+  port: 1883
+  discovery: true
+
+# TTS: command_line mit pico2wave (pico2wave muss auf dem Host installiert sein)
+tts:
+  - platform: command_line
+    command: 'pico2wave -l=de-DE -w "{filename}" "{text}"'
+    file_extension: "wav"
+
+# Intent Scripts: Rhasspy sendet Intents via MQTT → hier Beispiel
+intent_script:
+  TurnOnLight:
+    speech:
+      text: "Okay, ich schalte das Licht an."
+
+logger:
+  default: info

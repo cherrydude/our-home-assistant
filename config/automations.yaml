@@ -1,0 +1,12 @@
+# Beispielautomatisierung: spricht wenn Licht eingeschaltet wird
+- id: '001_say_light_on'
+  alias: Sage wenn Licht an
+  trigger:
+  - platform: state
+    entity_id: light.wohnzimmer
+    to: 'on'
+  action:
+  - service: tts.command_line_say
+    data:
+      entity_id: media_player.wohnzimmer_speaker
+      message: "Licht im Wohnzimmer ist jetzt an."
